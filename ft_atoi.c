@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:30:29 by rperez-t          #+#    #+#             */
-/*   Updated: 2023/11/23 21:16:59 by rperez-t         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:43:48 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	border_checker(long res, long lim, int c)
 	bordering = (res == (lim / 10));
 	value = c - '0';
 	crossover = ((lim % 10) < value);
-	check = potential || (bordering && crossover);
+	check = (potential || (bordering && crossover));
 	return (check);
 }
 

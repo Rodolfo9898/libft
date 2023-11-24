@@ -6,7 +6,7 @@
 #    By: rperez-t <rperez-t@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 14:34:39 by rperez-t          #+#    #+#              #
-#    Updated: 2023/11/23 14:34:39 by rperez-t         ###   ########.fr        #
+#    Updated: 2023/11/24 11:01:58 by rperez-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BONUS_OBJS	= ${BONUS_SRCS:.c=.o}
 
 FLAGS		= -Wall -Werror -Wextra
 
-all: $(NAME)
+all: ${NAME}
 
 ${NAME}: ${OBJS}
 	cc ${FLAGS} -c ${SRCS} -I ./

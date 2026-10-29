@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:32:06 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 12:40:28 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 14:44:25 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])

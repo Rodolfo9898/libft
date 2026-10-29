@@ -101,11 +101,19 @@ cc -Wall -Wextra -Werror main.c -I. -L. -lft
 - The man pages of each original function (`man 3 strlcat`, `man 3 memmove`, ...).
 - The 42 subject `libft.pdf` and the norm `en.norm.pdf`.
 
-### Use of AI
+**Use of AI.** An AI assistant (Claude) reviewed the finished library against
+the subject. It then helped fix the issues it found: building the list
+functions with `make`, matching libc for `ft_strchr`/`ft_strrchr` on non-ASCII
+bytes, `ft_calloc` overflow, `ft_strncmp` and `ft_strlcat` bounds, the
+`ft_lstmap` leak on allocation failure, and writing this README. Each fix was
+checked with tests against the libc and with valgrind.
 
-An AI assistant (Claude) reviewed the finished library against the subject.
-It then helped fix the issues it found: building the list functions with
-`make`, matching libc for `ft_strchr`/`ft_strrchr` on non-ASCII bytes,
-`ft_calloc` overflow, `ft_strncmp` and `ft_strlcat` bounds, the `ft_lstmap`
-leak on allocation failure, and writing this README. Each fix was checked
-with tests against the libc and with valgrind.
+In a second round it reviewed the fixed library again and helped with the
+follow-up cleanup: the `ft_lstsize` return type (`unsigned int`, as the subject
+requires), NULL checks in `ft_lstadd_front`, including `libft.h` in
+`ft_strchr.c`, `ft_strrchr.c` and `ft_striteri.c`, computing the length only
+once in `ft_strmapi`, `size_t` indices instead of `int`, simpler `ft_atoi`,
+`ft_itoa` and `ft_strtrim`, the explicit zero-size case of `ft_calloc`, and
+removing a generated review report that had been committed by mistake. These
+changes were checked with libc comparisons, AddressSanitizer and malloc-failure
+injection on `ft_split` and `ft_lstmap`.

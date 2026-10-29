@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:30:29 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 12:38:50 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 14:44:25 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static long	to_long(const char *str, int sign)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
+	size_t	i;
+	int		sign;
 
 	i = 0;
 	sign = 1;

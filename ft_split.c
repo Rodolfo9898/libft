@@ -6,16 +6,16 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:48:25 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 11:32:57 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 14:44:25 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	numwords(char const *s, char c)
+static size_t	numwords(char const *s, char c)
 {
-	int	i;
-	int	count;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
 	count = 0;
@@ -28,17 +28,17 @@ static int	numwords(char const *s, char c)
 	return (count);
 }
 
-static void	free_all(char **result, int word)
+static void	free_all(char **result, size_t word)
 {
 	while (word--)
 		free(result[word]);
 	free(result);
 }
 
-static int	split_words(char **result, char const *s, char c, int word)
+static int	split_words(char **result, char const *s, char c, size_t word)
 {
-	int		begin;
-	int		last;
+	size_t	begin;
+	size_t	last;
 
 	last = 0;
 	begin = 0;

@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:48:25 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 15:51:09 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/30 00:05:00 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static int	split_words(char **result, char const *s, char c, size_t word)
 				free_all(result, word);
 				return (0);
 			}
-			ft_strlcpy(result[word], (s + begin), last - begin + 2);
+			ft_memcpy(result[word], s + begin, last - begin + 1);
+			result[word][last - begin + 1] = '\0';
 			word++;
 		}
 		last++;

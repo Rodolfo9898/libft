@@ -6,17 +6,13 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:30:29 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 23:30:00 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:45:00 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-/*
-** Clamps to LONG_MAX / LONG_MIN on overflow, like strtol, so that the cast
-** to int in ft_atoi gives the same result as glibc's atoi.
-*/
 static long	to_long(const char *str, int sign)
 {
 	long	res;

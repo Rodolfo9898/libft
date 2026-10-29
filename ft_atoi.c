@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
 static long	to_long(const char *str, int sign)
 {
@@ -18,7 +19,7 @@ static long	to_long(const char *str, int sign)
 	long	lim;
 
 	res = 0;
-	lim = 9223372036854775807L;
+	lim = LONG_MAX;
 	while (ft_isdigit(*str))
 	{
 		if (res > lim / 10 || (res == lim / 10 && *str - '0' > lim % 10))

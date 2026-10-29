@@ -6,12 +6,16 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:47:50 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 14:44:25 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:30:00 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** A zero-sized request still allocates 1 byte, so the result is a unique
+** pointer that can be passed to free(), as the subject requires.
+*/
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*buffer;

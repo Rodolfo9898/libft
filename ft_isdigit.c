@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:54:21 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 11:32:57 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 21:10:54 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 int	ft_isdigit(int c)
 {
-	int	digit;
-
-	digit = ('0' <= c && c <= '9');
-	return (digit);
+	return ('0' <= c && c <= '9');
 }

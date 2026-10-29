@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:08:14 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 11:32:57 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 21:10:54 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 int	ft_isprint(int c)
 {
-	int	range;
-
-	range = (' ' <= c && c <= '~');
-	return (range);
+	return (' ' <= c && c <= '~');
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rperez-t <rperez-t@student.s19.be>         +#+  +:+       +#+        */
+/*   By: rperez-t <rperez-t@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 08:30:29 by rperez-t          #+#    #+#             */
-/*   Updated: 2023/11/23 21:43:48 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 12:38:50 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,3 @@ int	ft_atoi(const char *str)
 	res = res * values[1];
 	return (res);
 }
-
-/*
-#include<stdio.h>
-int main()
-{
-	printf("%d\n",ft_atoi("922337203685477580000000"));
-	printf("%d\n",atoi("922337203685477580000000000"));
-	return 0;
-}*/

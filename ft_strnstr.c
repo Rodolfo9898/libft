@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:06:00 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 15:51:09 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:47:53 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 		return ((char *)str);
 	find_len = ft_strlen(to_find);
 	i = 0;
-	while (str[i] && i + find_len <= len)
+	while (i + find_len <= len && str[i])
 	{
 		if (str[i] == *to_find && ft_strncmp(str + i, to_find, find_len) == 0)
 			return ((char *)str + i);

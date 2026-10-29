@@ -6,13 +6,13 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:32:15 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 15:51:09 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:47:53 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t		i;
 	size_t		len;

@@ -6,22 +6,27 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:48:25 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 14:44:25 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 15:51:09 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	numwords(char const *s, char c)
+static int	is_word_end(char const *s, size_t i, char c)
+{
+	return (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'));
+}
+
+static size_t	count_words(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
 
 	i = 0;
 	count = 0;
-	while (s[i] != 0)
+	while (s[i] != '\0')
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == 0))
+		if (is_word_end(s, i, c))
 			count++;
 		i++;
 	}
@@ -46,7 +51,7 @@ static int	split_words(char **result, char const *s, char c, size_t word)
 	{
 		if (s[last] == c)
 			begin = last + 1;
-		if (s[last] != c && (s[last + 1] == c || s[last + 1] == 0))
+		if (is_word_end(s, last, c))
 		{
 			result[word] = malloc(sizeof(char) * (last - begin + 2));
 			if (!result[word])
@@ -69,7 +74,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
+	result = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!result)
 		return (NULL);
 	if (!split_words(result, s, c, 0))

@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:06:00 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 11:32:57 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/29 15:51:09 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t	pos;
+	size_t	find_len;
+	size_t	i;
 
 	if (*to_find == '\0')
 		return ((char *)str);
-	pos = ft_strlen((char *)to_find);
-	while (*str != '\0' && len-- >= pos)
+	find_len = ft_strlen(to_find);
+	i = 0;
+	while (str[i] && i + find_len <= len)
 	{
-		if (*str == *to_find && ft_memcmp(str, to_find, pos) == 0)
-			return ((char *)str);
-		str++;
+		if (str[i] == *to_find && ft_strncmp(str + i, to_find, find_len) == 0)
+			return ((char *)str + i);
+		i++;
 	}
 	return (NULL);
 }

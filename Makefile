@@ -6,7 +6,7 @@
 #    By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 14:34:39 by rperez-t          #+#    #+#              #
-#    Updated: 2026/10/29 12:38:27 by rperez-t         ###   ########.fr        #
+#    Updated: 2026/10/29 15:51:09 by rperez-t         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,16 @@ SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 
 OBJS		= ${SRCS:.c=.o}
 
-FLAGS		= -Wall -Werror -Wextra
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	ar rc ${NAME} ${OBJS}
+	ar rcs ${NAME} ${OBJS}
 
-.c.o:
-		cc ${FLAGS} -I ./ -c $< -o ${<:.c=.o}
-
-${OBJS}: libft.h
+%.o: %.c libft.h
+	${CC} ${CFLAGS} -I. -c $< -o $@
 
 clean:
 	rm -f ${OBJS}

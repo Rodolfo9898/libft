@@ -61,6 +61,20 @@ typedef struct s_list
 Functions that allocate return `NULL` when the allocation fails and free
 anything they had already allocated.
 
+### Technical choices
+
+- **`ft_atoi` overflow:** the digits are accumulated in a `long` that is
+  clamped to `LONG_MAX` / `LONG_MIN`, then cast to `int`. This gives the same
+  result as glibc's `atoi`, which is `(int)strtol(str, NULL, 10)`.
+- **`ft_calloc(0, n)` / `ft_calloc(n, 0)`:** allocates one byte, so the result
+  is a unique pointer that can be passed to `free()`, as the subject requires.
+  `nmemb * size` is checked for overflow before calling `malloc`.
+- **NULL arguments:** the libc copies (`ft_strlen`, `ft_strdup`, ...) behave like
+  the originals and do not check for `NULL`. The additional and list functions
+  return `NULL` or do nothing when given a `NULL` string, list or callback.
+- **`ft_lstmap`** keeps a pointer to the last `next` field, so building the new
+  list is linear instead of walking it again for every node.
+
 ## Instructions
 
 Requirements: `cc`, `make` and `ar`.
@@ -102,6 +116,10 @@ cc -Wall -Wextra -Werror main.c -I. -L. -lft
 - The 42 subject `libft.pdf` and the norm `en.norm.pdf`.
 
 **Use of AI.** An AI assistant (Claude) reviewed the finished library against
-the subject. Pointing out any failures and explaining why they were not right
-according to the subject. Proposed fixes and explained what was different in
-this new approach.
+the subject, pointed out failures and explained why they did not match the
+subject, and proposed fixes. After a review, it also applied these refactors:
+a tail pointer in `ft_lstmap`, a single loop in `ft_strncmp`, a clearer loop
+in `ft_strnstr`, one `write` call in `ft_putstr_fd`, a shared word-end helper
+in `ft_split`, one `ft_strlen` call in `ft_substr`, clearer variable names in
+`ft_strmapi` and `ft_strlcat`, the `CC`/`CFLAGS`/`ar rcs` Makefile variables,
+and the "Technical choices" section above.

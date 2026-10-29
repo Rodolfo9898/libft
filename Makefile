@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rperez-t <rperez-t@student.42belgium.be    +#+  +:+       +#+         #
+#    By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 14:34:39 by rperez-t          #+#    #+#              #
 #    Updated: 2026/10/29 12:38:27 by rperez-t         ###   ########.fr        #

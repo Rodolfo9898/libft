@@ -2,77 +2,56 @@
 
 # Verdict: libft
 
-❌ **FAIL** · Claude: **do not pass**
+❌ **FAIL** · Claude: **pass with reservations**
 
-10 thing(s) lacking · 2 to look at a second time · 42 ok
+2 thing(s) lacking · 4 to look at a second time · 48 ok
 
 - Repository: git@github.com:Rodolfo9898/libft.git
-- Commit: `c48d6f6` verdict (Rodolfo)
+- Commit: `50c3fc2` fixes (Rodolfo)
 - Subjects: libft.pdf, en.norm.pdf
-- Generated: 2026-10-29 11:19 UTC
+- Generated: 2026-10-29 12:39 UTC
 
 ## At a glance
 
 | | ❌ Lacking | ⚠️ Second look | ✅ Ok |
 |---|---:|---:|---:|
-| Mandatory part | 10 | 2 | 42 |
+| Mandatory part | 2 | 4 | 48 |
 
 > FAIL when anything is lacking, PASS WITH ISSUES when something still needs a second look, PASS when both lists are empty. Items marked `Claude` were assessed by claude in the terminal. The peer evaluation decides the grade.
 
 ## ❌ Lacking — fix these
 
-- **The evaluation of mandatory and bonus parts is conducted separately.** `Claude` — Mandatory list functions are only built by `make bonus`, so a mandatory evaluation using `make` lacks them. _(libft.pdf p.4)_
-  - _Check by hand:_ Run make, then nm libft.a \| grep lst.
-  - `Makefile:35`
-  - `Makefile:42`
-- **Submitting unused files is not allowed.** `Claude` — verdict.md (a generated review report) is committed in HEAD (commit c48d6f6); it is deleted in the working copy but not in git. _(libft.pdf p.8)_
-  - _Check by hand:_ Run git ls-files on the graded commit.
-- **Your version will have the same prototypes and behaviors as the originals, adhering strictly to their definitions in the man page.** `Claude` — Compared with signed char, ft\_strchr/ft\_strrchr compare char with unsigned char and miss bytes above 127. ft\_calloc ignores nmemb\*size overflow. ft\_strncmp reads s1\[n\]. ft\_strlcat reads and writes past size when dest is unterminated. _(libft.pdf p.9)_
-  - _Check by hand:_ On x86, test ft\_strchr("\\xc8", 200) and ft\_calloc(SIZE\_MAX/2+2, 2).
-  - `ft_strchr.c:20`
-  - `ft_strrchr.c:22`
-  - `ft_calloc.c:19`
-  - `ft_strncmp.c:25`
-  - `ft_strlcat.c:37`
-- **README.md meets the subject's requirements** — No README.md found at the root of the repository. The subject requires one. _(libft.pdf p.18)_
-- **➠Additional sections may be required depending on the project (e.g., usage examples, feature list, technical choices, etc.).** `Claude` — There is no README.md. _(libft.pdf p.18)_
-- **Any required additions will be explicitly listed below.** `Claude` — There is no README.md, so none of the required sections exist. _(libft.pdf p.18)_
-- **A detailed description of the library created for this project must also be included.** `Claude` — There is no README.md, so the library is not described. _(libft.pdf p.18)_
-- **The 42 header must contain several informations up-to-date, including the creator with login and student email (@student.campus), the date of creation, the login and date of the last update.** `Claude` — ft\_lstmap.c has the placeholder email marvin@42.fr; every other file uses rperez-t@student.s19.be. _(en.norm.pdf p.12)_
-  - _Check by hand:_ Minor; decide whether to flag it.
+- **Submitting unused files is not allowed.** `Claude` — verdict.md, a generated review report, is still tracked in HEAD 50c3fc2. Its removal is staged in the working tree but not committed. _(libft.pdf p.8)_
+  - _Check by hand:_ Run git ls-files on the commit actually submitted; also make sure claude-review.md is not committed.
+- **The 42 header must contain several informations up-to-date, including the creator with login and student email (@student.campus), the date of creation, the login and date of the last update.** `Claude` — In HEAD, eight headers are missing the '\>' after the email, and ft\_lstmap.c has the old s19 email and a 2023 Updated date. The working tree fixes this, but the fix is not committed. _(en.norm.pdf p.12)_
+  - _Check by hand:_ Check the headers in the commit actually submitted.
+  - `Makefile:6`
+  - `ft_atoi.c:6`
   - `ft_lstmap.c:6`
-- **Your comments should be in English, and useful.** `Claude` — The only comment is a leftover commented-out test main, which is not a useful comment. _(en.norm.pdf p.15)_
-  - _Check by hand:_ Minor; ask the student to remove it.
-  - `ft_atoi.c:77`
-- **Required functions are in libft.a** — 9 of 43 required function(s) are in the sources but NOT in the libft.a that `make` builds: ft\_lstnew, ft\_lstadd\_front, ft\_lstsize, ft\_lstlast, ft\_lstadd\_back, ft\_lstdelone, ft\_lstclear, ft\_lstiter, ft\_lstmap. Check which Makefile rule adds them: the subject requires them in the library. _(libft.pdf p.1)_
+  - `ft_lstmap.c:9`
 
 ## ⚠️ Second look — a human should verify these
 
-### Claude disagrees with an automated result (5)
+### Claude is unsure (2)
 
-- **Makefile has a bonus rule** — the script says: Could not be run: no bonus files, so no bonus rule is required.
-  - Actually: A bonus rule exists (Makefile:42-44). It adds the 9 ft\_lst\* sources from BONUS\_SRCS (Makefile:23-25).
-- **Makefile does not relink** — the script says: Passed.
-  - Actually: A second plain make does nothing. But make bonus recompiles and re-archives on every call (Makefile:42-44), $(NAME) compiles every source twice (Makefile:36), and libft.h is not a dependency.
-- **No memory leaks** — the script says: Passed.
-  - Actually: ft\_lstmap leaks the value returned by f() when ft\_lstnew fails (valgrind 'definitely lost' with malloc-failure injection, ft\_lstmap.c:23-27).
-- **Does not crash** — the script says: Passed.
-  - Actually: Valgrind reports an invalid write in ft\_strlcat when dest is not NUL-terminated within size (ft\_strlcat.c:37). ft\_lstadd\_front dereferences NULL arguments (ft\_lstadd\_front.c:17).
-- **Required functions are in libft.a** — the script says: 9 of 43 required functions are missing from the libft.a that make builds.
-  - Actually: Correct for plain make. make bonus adds the 9 ft\_lst\* functions (43 total), but it is still a failure because they are mandatory.
-
-### Claude is unsure (1)
-
-- **You must follow this rule:** `Claude` — The text of the rule is not in the extract I was given. _(libft.pdf p.9)_
+- **You must follow this rule:** `Claude` — The text of the rule was not in the extract provided. _(libft.pdf p.9)_
   - _Check by hand:_ Read libft.pdf p.9 and check the rule.
+- **Any required additions will be explicitly listed below.** `Claude` — The list of required README additions was not in the extract; the present sections (Description, Instructions, Resources, Use of AI) look complete. _(libft.pdf p.18)_
+  - _Check by hand:_ Compare the README headings with libft.pdf p.18.
+  - `README.md:5`
+  - `README.md:64`
+  - `README.md:99`
+  - `README.md:104`
 
-### Warnings and checks that could not run (1)
+### Warnings and checks that could not run (2)
 
 - **Makefile has a bonus rule** — No bonus files in the repository, so no bonus rule is required. _(libft.pdf p.4)_
+- **README.md meets the subject's requirements** — README.md is complete, but its Resources section does not say how AI was used (the subject asks for it, even if the answer is “not used”). _(libft.pdf p.18)_
+  - `README.md:99`
 
 ## ✅ Ok
 
-### Checks that passed (16)
+### Checks that passed (17)
 
 - Repository contains no build artifacts — No object files, binaries or .DS\_Store committed.
 - Repository contains no secrets — No credentials or private keys found.
@@ -80,113 +59,104 @@
 - Makefile rules — Makefile defines NAME, all, clean, fclean, re.
 - Written in C — Only C sources found.
 - `make` builds `libft.a` — `libft.a` was built.
-- Compiles with -Wall -Wextra -Werror — All 35 compile command(s) use -Wall -Wextra -Werror.
+- Compiles with -Wall -Wextra -Werror — All 43 compile command(s) use -Wall -Wextra -Werror.
 - Only authorized external functions — No unauthorized function calls found.
+- Required functions are in libft.a — All 43 required function(s) are defined in the sources and present in libft.a.
 - Passes norminette — norminette: all 44 file(s) OK.
 - Makefile does not relink — A second `make` has nothing to do.
 - No global variables — norminette detected no global variables (the subject may allow some; see the manual items).
-- Does not crash — 136 basic run(s) (no arguments, invalid arguments, a few numbers) did not crash. This is a smoke test, not a full evaluation.
-- No memory leaks — valgrind found no definite leaks in 102 basic run(s). Leaks on other inputs are not covered.
+- Does not crash — 172 basic run(s) (no arguments, invalid arguments, a few numbers) did not crash. This is a smoke test, not a full evaluation.
+- No memory leaks — valgrind found no definite leaks in 129 basic run(s). Leaks on other inputs are not covered.
 - `make clean` removes objects and keeps the program — Objects removed, program kept.
 - `make fclean` removes everything built — Objects and program removed.
 - `make re` rebuilds — Rebuilt from scratch.
 
-### Requirements claude found ok (24)
+### Requirements claude found ok (29)
 
-- If you have bonus files/functions, they are included in the norm check, and you will receive a 0 if there is a norm error. — The list files (built by the bonus rule) pass norminette like the rest. `Makefile:23` `Claude`
-- If this occurs, your project will be considered non-functional and will receive a 0 during the evaluation. — No crash on valid inputs in my tests. ft\_strlcat writes out of bounds on an unterminated dest, and ft\_lstadd\_front crashes on NULL; both are edge cases. `ft_strlcat.c:37` `Claude`
-- Bonuses must be placed in \_bonus.{c/h} files, unless the subject specifies otherwise. — The subject has no bonus part. The list functions are mandatory but sit under BONUS\_SRCS; they are not \*\_bonus.c files. `Makefile:23` `Claude`
+- If you have bonus files/functions, they are included in the norm check, and you will receive a 0 if there is a norm error. — No bonus files exist; every file passes norminette. `Makefile:15` `Claude`
+- If this occurs, your project will be considered non-functional and will receive a 0 during the evaluation. — No crash, invalid access or double free on any valid input tested, including malloc-failure paths. ft\_lstadd\_front segfaults on NULL arguments, which the subject does not require handling. `ft_lstadd_front.c:17` `Claude`
+- Bonuses must be placed in \_bonus.{c/h} files, unless the subject specifies otherwise. — The student states there is no bonus part, and the script's required-function list includes the ft\_lst\* functions, so the lists are mandatory and need no \_bonus files. `Makefile:22` `Claude`
+- The evaluation of mandatory and bonus parts is conducted separately. — There is no bonus part; plain make builds all 43 mandatory functions. `Makefile:22` `Claude`
 - All files must be placed at the root of your repository. — All sources, the header and the Makefile are at the root. `Makefile:15` `Claude`
-- You must use the ar command to create your library. — The library is created with ar rc. `Makefile:37` `Claude`
-- The use of libtool is strictly forbidden. — No libtool anywhere. `Makefile:37` `Claude`
+- You must use the ar command to create your library. — The library is created with ar rc. `Makefile:33` `Claude`
+- The use of libtool is strictly forbidden. — No libtool anywhere. `Makefile:33` `Claude`
 - Your libft.a must be created at the root of your repository. — NAME = libft.a, built at the root. `Makefile:13` `Claude`
-- IV.2 Part 1 - Libc functions To begin, you must reimplement a set of functions from the libc. — All Part 1 functions are implemented. `libft.h:19` `Claude`
+- IV.2 Part 1 - Libc functions To begin, you must reimplement a set of functions from the libc. — All Part 1 functions are implemented and in libft.a. `libft.h:19` `Claude`
+- Your version will have the same prototypes and behaviors as the originals, adhering strictly to their definitions in the man page. — Edge-case tests against libc/BSD pass with both unsigned and signed char. Remaining deviations only matter for strings of 2 GiB or more (int counters). `ft_strlen.c:17` `Claude`
 - The only difference will be their names, which must start with the ’ft\_’ prefix. — Every function has the ft\_ prefix. `libft.h:19` `Claude`
-- Therefore, it is forbidden to include it in your own prototypes and to compile your code with the -std=c99 flag. — No restrict in prototypes, no -std=c99. `libft.h:27` `Claude`
+- Therefore, it is forbidden to include it in your own prototypes and to compile your code with the -std=c99 flag. — No restrict in the prototypes and no -std=c99. `libft.h:27` `Claude`
 - You must write your own functions that implement the following originals. — The functions are written by hand. `ft_memmove.c:15` `Claude`
-- They must not rely on any external functions. — Part 1 uses only malloc (allowed for calloc/strdup) and the student's own helpers. `ft_calloc.c:19` `Claude`
-- For the character classification functions (isalpha, isdigit, isalnum, isascii, isprint), the return value must be: — The classification functions return 0 or 1. `ft_isalpha.c:21` `Claude`
-- Some functions that you must reimplement, such as strlcpy, strlcat, and bzero, are not included by default in the GNU C Library (glibc). — strlcpy, strlcat and bzero are implemented and match libbsd in normal cases. `ft_strlcpy.c:15` `Claude`
-- IV.3 Part 2 - Additional functions In this second part, you must develop a set of functions that are either not included in the libc, or exist in a different form. — All Part 2 functions are present and behave correctly in my tests. `libft.h:42` `Claude`
-- The returned array must be NULL terminated. — The ft\_split array is NULL-terminated, including for empty input, and malloc failures free everything. `ft_split.c:62` `Claude`
+- They must not rely on any external functions. — Only malloc/free/write and the student's own helpers are used. `ft_calloc.c:21` `Claude`
+- For the character classification functions (isalpha, isdigit, isalnum, isascii, isprint), the return value must be: — The classification functions return 0 or 1 and match libc truthiness for -1..255. `ft_isalpha.c:23` `Claude`
+- Some functions that you must reimplement, such as strlcpy, strlcat, and bzero, are not included by default in the GNU C Library (glibc). — strlcpy, strlcat and bzero match BSD semantics, including size 0 and an unterminated dest. `ft_strlcpy.c:15` `Claude`
+- IV.3 Part 2 - Additional functions In this second part, you must develop a set of functions that are either not included in the libc, or exist in a different form. — All Part 2 functions are present and passed the edge-case tests. `libft.h:42` `Claude`
+- The returned array must be NULL terminated. — The ft\_split array is NULL-terminated, including for empty and all-separator input. `ft_split.c:62` `Claude`
 - Negative numbers must be handled. — ft\_itoa handles negatives and INT\_MIN. `ft_itoa.c:40` `Claude`
-- All identifiers (functions, types, variables, etc.) names should be explicit, or a mnemonic, should be readable in English, with each word separated by an underscore. — Names are readable English. The int values\[2\] used as a sign/index pair in atoi is obscure. `ft_atoi.c:53` `Claude`
-- The allowed elements of a header file are: header inclusions (system or not), declarations, defines, prototypes and macros. — The header has only includes, prototypes, a typedef and the include guard. `libft.h:13` `Claude`
+- ➠Additional sections may be required depending on the project (e.g., usage examples, feature list, technical choices, etc.). — The README has a usage example, a function list and build instructions. `README.md:77` `Claude`
+- A detailed description of the library created for this project must also be included. — A detailed per-category description of the library, including t\_list. `README.md:13` `Claude`
+- All identifiers (functions, types, variables, etc.) names should be explicit, or a mnemonic, should be readable in English, with each word separated by an underscore. — Names are readable English. The values\[2\] sign/index pair in atoi is obscure. `ft_atoi.c:53` `Claude`
+- The allowed elements of a header file are: header inclusions (system or not), declarations, defines, prototypes and macros. — Includes, a typedef, prototypes and the include guard only. `libft.h:13` `Claude`
 - Inclusion of unused headers is forbidden. — unistd.h (write) and stdlib.h (malloc/free/size\_t) are both used. `libft.h:16` `Claude`
 - Preprocessor constants (or #define) you create must be used only for literal and constant values. — The only #define is the include guard. `libft.h:14` `Claude`
 - All #define created to bypass the norm and/or obfuscate code are forbidden. — No #define is used to bypass the norm. `libft.h:14` `Claude`
 - You can use macros available in standard libraries, only if those ones are allowed in the scope of the given project. — No standard macros are used. `Claude`
+- Your comments should be in English, and useful. — No comments in the sources, so none violate the rule. `Claude`
 - A comment cannot justify the creation of a carryall or bad function. — No comment justifies a bad function. `Claude`
 
 ### Not applicable to this project (2)
 
-- If your project allows you to use your libft, you must copy its sources and its associated Makefile into a libft folder. — Only concerns projects that use libft. `Claude`
-- Your project’s Makefile must compile the library by using its Makefile, then compile the project. — Only concerns projects that use libft. `Claude`
+- If your project allows you to use your libft, you must copy its sources and its associated Makefile into a libft folder. — Concerns projects that use libft. `Claude`
+- Your project’s Makefile must compile the library by using its Makefile, then compile the project. — Concerns projects that use libft. `Claude`
 
 ## Improvements
 
 > Suggestions for making the project better, from claude's review. They never change the result above.
 
-**README:** ⚠ **no README found** in the repository.
+**README:** `README.md` found (85 non-empty lines).
 
-### Structure (4)
+### Structure (1)
 
-- **[high] Build list functions with make** — Move the ft\_lst\* sources into SRCS so plain make builds all 43 required functions.
-  - `Makefile:23`
-  - `Makefile:42`
-- **[high] Add README.md** — Add a README with the sections the subject requires and a detailed description of the library.
-- **[medium] Clean up Makefile rules** — Remove the duplicate compile on line 36, make bonus a non-relinking target, add libft.h as a dependency and add re to .PHONY.
-  - `Makefile:36`
-  - `Makefile:42`
-  - `Makefile:54`
-- **[medium] Remove unused committed files** — Delete verdict.md from the repository.
+- **[high] Commit the verdict.md removal and file modes** — The removal of verdict.md and the 644 modes are only staged; HEAD still tracks verdict.md and records 39 files as executable.
 
 ### Code (2)
 
-- **[high] Fix strchr/strrchr char comparison** — Compare s\[i\] with (char)c, or cast both sides to unsigned char, so bytes above 127 match on signed-char platforms.
-  - `ft_strchr.c:20`
-  - `ft_strrchr.c:22`
-- **[high] Guard calloc overflow** — Return NULL when size && nmemb \> SIZE\_MAX / size, before calling malloc.
-  - `ft_calloc.c:19`
-
-### Logic (2)
-
-- **[medium] Free mapped content on lstmap failure** — Keep the f() result and call del on it when ft\_lstnew fails.
-  - `ft_lstmap.c:23`
-- **[medium] Respect n/size bounds** — Check i \< n before reading s1\[i\] in strncmp. In strlcat, never read or write dest beyond size.
-  - `ft_strncmp.c:25`
-  - `ft_strlcat.c:28`
-
-### Readability (2)
-
-- **[low] Remove dead code and fix the header** — Drop the commented-out main in ft\_atoi.c and the useless ptr assignment in ft\_bzero, and fix the marvin@42.fr header.
-  - `ft_atoi.c:77`
-  - `ft_bzero.c:17`
-  - `ft_lstmap.c:6`
-- **[low] Use clearer types and variables** — Use size\_t for lengths in ft\_strlen, hoist strlen out of the ft\_strmapi loop, and replace the values\[2\] array in ft\_atoi with named variables.
+- **[medium] Harden ft\_lstadd\_front** — Return early when lst or new is NULL, like ft\_lstadd\_back does, and stop overwriting new-\>next when the list is empty.
+  - `ft_lstadd_front.c:17`
+- **[low] Use size\_t for lengths and indexes** — The int counters overflow on very long strings; size\_t matches the libc prototypes.
   - `ft_strlen.c:17`
+  - `ft_strdup.c:17`
+  - `ft_strjoin.c:17`
+  - `ft_split.c:40`
+
+### Logic (1)
+
+- **[low] Compute the length once in ft\_strmapi** — ft\_strlen is called on every loop iteration, which makes the function quadratic.
   - `ft_strmapi.c:26`
+
+### Readability (3)
+
+- **[medium] Commit the 42 header fixes** — The missing '\>' and the stale ft\_lstmap.c header are fixed only in the working tree.
+  - `Makefile:6`
+  - `ft_lstmap.c:6`
+- **[low] Use named variables in ft\_atoi** — Replace the values\[2\] index/sign array with explicit variables.
   - `ft_atoi.c:53`
+- **[low] Small cleanups** — Drop the dead assignment in ft\_bzero, include libft.h in ft\_strchr/ft\_strrchr/ft\_striteri so their prototypes are checked, and remove the trailing tabs in libft.h.
+  - `ft_bzero.c:17`
+  - `ft_strchr.c:13`
+  - `libft.h:23`
 
 ## Final verdict
 
-**Result: FAIL** · **Claude: do not pass**
+**Result: FAIL** · **Claude: pass with reservations**
 
-> The subject requires a README.md, and there isn't one. Plain make also leaves the 9 mandatory list functions out of libft.a, and ft\_strchr/ft\_strrchr/ft\_calloc do not behave like libc on x86 edge cases.
+> Every function matches libc on the edge cases tested, with both signed and unsigned char, survives malloc failure without leaks, and builds cleanly under the norm. The fixes for the unused verdict.md and the 42 headers exist only as uncommitted changes, so commit 50c3fc2 still has both problems, and the student should be able to explain the AI-assisted fixes.
 
-What to do next (10 thing(s) lacking, most important first):
+What to do next (2 thing(s) lacking, most important first):
 
-1. The evaluation of mandatory and bonus parts is conducted separately. — Mandatory list functions are only built by `make bonus`, so a mandatory evaluation using `make` lacks them.
-2. Submitting unused files is not allowed. — verdict.md (a generated review report) is committed in HEAD (commit c48d6f6); it is deleted in the working copy but not in git.
-3. Your version will have the same prototypes and behaviors as the originals, adhering strictly to their definitions in the man page. — Compared with signed char, ft\_strchr/ft\_strrchr compare char with unsigned char and miss bytes above 127. ft\_calloc ignores nmemb\*size overflow. ft\_strncmp reads s1\[n\]. ft\_strlcat reads and writes past size when dest is unterminated.
-4. README.md meets the subject's requirements — No README.md found at the root of the repository. The subject requires one.
-5. ➠Additional sections may be required depending on the project (e.g., usage examples, feature list, technical choices, etc.). — There is no README.md.
-6. Any required additions will be explicitly listed below. — There is no README.md, so none of the required sections exist.
-7. A detailed description of the library created for this project must also be included. — There is no README.md, so the library is not described.
-8. The 42 header must contain several informations up-to-date, including the creator with login and student email (@student.campus), the date of creation, the login and date of the last update. — ft\_lstmap.c has the placeholder email marvin@42.fr; every other file uses rperez-t@student.s19.be.
-10. … and 2 more (listed above)
+1. Submitting unused files is not allowed. — verdict.md, a generated review report, is still tracked in HEAD 50c3fc2. Its removal is staged in the working tree but not committed.
+2. The 42 header must contain several informations up-to-date, including the creator with login and student email (@student.campus), the date of creation, the login and date of the last update. — In HEAD, eight headers are missing the '\>' after the email, and ft\_lstmap.c has the old s19 email and a 2023 Updated date. The working tree fixes this, but the fix is not committed.
 
-Still open: 2 point(s) for a second look.
+Still open: 4 point(s) for a second look.
 
 Claude answered 35 of 35 requirement(s).
 

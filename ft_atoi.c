@@ -12,64 +12,41 @@
 
 #include "libft.h"
 
-static void	skip(const char *str, int *values)
+static long	to_long(const char *str, int sign)
 {
-	int	i;
-	int	sign;
+	long	res;
+	long	lim;
 
-	i = values[0];
-	sign = values[1];
-	while ((str[i] == ' ') || (('\t' <= str[i]) && (str[i] <= '\r')))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	res = 0;
+	lim = 9223372036854775807L;
+	while (ft_isdigit(*str))
 	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
+		if (res > lim / 10 || (res == lim / 10 && *str - '0' > lim % 10))
+		{
+			if (sign == 1)
+				return (lim);
+			return (-lim - 1);
+		}
+		res = res * 10 + (*str - '0');
+		str++;
 	}
-	values[0] = i;
-	values[1] = sign;
-}
-
-static int	border_checker(long res, long lim, int c)
-{
-	int	bordering;
-	int	potential;
-	int	value;
-	int	crossover;
-	int	check;
-
-	potential = ((lim / 10) < res);
-	bordering = (res == (lim / 10));
-	value = c - '0';
-	crossover = ((lim % 10) < value);
-	check = (potential || (bordering && crossover));
-	return (check);
+	return (res * sign);
 }
 
 int	ft_atoi(const char *str)
 {
-	long	res;
-	int		values[2];
-	long	lim;
+	int	i;
+	int	sign;
 
-	values[0] = 0;
-	values[1] = 1;
-	lim = 9223372036854775807L;
-	res = 0;
-	skip(str, values);
-	while (ft_isdigit(str[values[0]]))
+	i = 0;
+	sign = 1;
+	while (str[i] == ' ' || ('\t' <= str[i] && str[i] <= '\r'))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (border_checker(res, lim, str[values[0]]))
-		{
-			if (values[1] == 1)
-				return (-1);
-			else
-				return (0);
-		}
-		res = ((res * 10) + (str[values[0]] - '0'));
-		values[0]++;
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	res = res * values[1];
-	return (res);
+	return ((int)to_long(str + i, sign));
 }

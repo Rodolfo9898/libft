@@ -32,28 +32,25 @@ static int	num_digit(long num)
 char	*ft_itoa(int n)
 {
 	long	len;
-	long	nl;
+	long	num;
 	char	*result;
 
 	len = num_digit(n);
-	nl = n;
-	if (n < 0)
-		nl *= -1;
+	num = n;
+	if (num < 0)
+		num = -num;
 	result = malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (NULL);
-	result[len] = 0;
-	if (nl == 0)
+	result[len] = '\0';
+	if (num == 0)
 		result[0] = '0';
-	else
+	while (num != 0)
 	{
-		while (len--, nl != 0)
-		{
-			result[len] = (nl % 10) + '0';
-			nl = (nl - (nl % 10)) / 10;
-		}
-		if (n < 0)
-			result[len] = '-';
+		result[--len] = (num % 10) + '0';
+		num = num / 10;
 	}
+	if (n < 0)
+		result[0] = '-';
 	return (result);
 }

@@ -44,7 +44,7 @@ static int	split_words(char **result, char const *s, char c, int word)
 	begin = 0;
 	while (s[last])
 	{
-		if (s[last] == c || s[last] == 0)
+		if (s[last] == c)
 			begin = last + 1;
 		if (s[last] != c && (s[last + 1] == c || s[last + 1] == 0))
 		{

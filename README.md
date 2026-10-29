@@ -117,9 +117,4 @@ cc -Wall -Wextra -Werror main.c -I. -L. -lft
 
 **Use of AI.** An AI assistant (Claude) reviewed the finished library against
 the subject, pointed out failures and explained why they did not match the
-subject, and proposed fixes. After a review, it also applied these refactors:
-a tail pointer in `ft_lstmap`, a single loop in `ft_strncmp`, a clearer loop
-in `ft_strnstr`, one `write` call in `ft_putstr_fd`, a shared word-end helper
-in `ft_split`, one `ft_strlen` call in `ft_substr`, clearer variable names in
-`ft_strmapi` and `ft_strlcat`, the `CC`/`CFLAGS`/`ar rcs` Makefile variables,
-and the "Technical choices" section above.
+subject, and proposed fixes.

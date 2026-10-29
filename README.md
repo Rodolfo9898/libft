@@ -114,7 +114,16 @@ cc -Wall -Wextra -Werror main.c -I. -L. -lft
 
 - The man pages of each original function (`man 3 strlcat`, `man 3 memmove`, ...).
 - The 42 subject `libft.pdf` and the norm `en.norm.pdf`.
+- Linux man pages online: <https://man7.org/linux/man-pages/>
+- OpenBSD `strlcpy(3)` / `strlcat(3)`, the original definition of these
+  functions: <https://man.openbsd.org/strlcpy.3>
+- The C11 standard draft (N1570), for `memcpy` vs `memmove` and integer
+  overflow: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf>
+- Beej's Guide to C Programming, for pointers and memory:
+  <https://beej.us/guide/bgc/>
 
 **Use of AI.** An AI assistant (Claude) reviewed the finished library against
 the subject, pointed out failures and explained why they did not match the
-subject, and proposed fixes.
+subject, and proposed fixes. It also made small readability changes
+(`NULL` instead of `0`, simpler `ft_memcmp`, `ft_memmove`, `ft_toupper`,
+`ft_tolower` and `ft_itoa`) without changing their behaviour.

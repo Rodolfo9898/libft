@@ -31,7 +31,7 @@ static int	num_digit(long num)
 
 char	*ft_itoa(int n)
 {
-	long	len;
+	int		len;
 	long	num;
 	char	*result;
 

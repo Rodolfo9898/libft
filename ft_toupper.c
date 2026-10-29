@@ -14,12 +14,7 @@
 
 int	ft_toupper(int c)
 {
-	int	lower;
-	int	diff;
-
-	lower = ('a' <= c && c <= 'z');
-	diff = 'a' - 'A';
-	if (lower)
-		return (c - diff);
+	if ('a' <= c && c <= 'z')
+		return (c - ('a' - 'A'));
 	return (c);
 }

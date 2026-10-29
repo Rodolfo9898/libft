@@ -124,6 +124,4 @@ cc -Wall -Wextra -Werror main.c -I. -L. -lft
 
 **Use of AI.** An AI assistant (Claude) reviewed the finished library against
 the subject, pointed out failures and explained why they did not match the
-subject, and proposed fixes. It also made small readability changes
-(`NULL` instead of `0`, simpler `ft_memcmp`, `ft_memmove`, `ft_toupper`,
-`ft_tolower` and `ft_itoa`) without changing their behaviour.
+subject, and proposed fixes.

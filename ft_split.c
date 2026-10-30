@@ -42,28 +42,28 @@ static void	free_all(char **result, size_t word)
 
 static int	split_words(char **result, char const *s, char c, size_t word)
 {
-	size_t	begin;
-	size_t	last;
+	size_t	word_start;
+	size_t	i;
 
-	last = 0;
-	begin = 0;
-	while (s[last])
+	i = 0;
+	word_start = 0;
+	while (s[i])
 	{
-		if (s[last] == c)
-			begin = last + 1;
-		if (is_word_end(s, last, c))
+		if (s[i] == c)
+			word_start = i + 1;
+		if (is_word_end(s, i, c))
 		{
-			result[word] = malloc(sizeof(char) * (last - begin + 2));
+			result[word] = malloc(sizeof(char) * (i - word_start + 2));
 			if (!result[word])
 			{
 				free_all(result, word);
 				return (0);
 			}
-			ft_memcpy(result[word], s + begin, last - begin + 1);
-			result[word][last - begin + 1] = '\0';
+			ft_memcpy(result[word], s + word_start, i - word_start + 1);
+			result[word][i - word_start + 1] = '\0';
 			word++;
 		}
-		last++;
+		i++;
 	}
 	result[word] = NULL;
 	return (1);

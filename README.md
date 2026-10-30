@@ -70,7 +70,10 @@ anything they had already allocated.
   is a unique pointer that can be passed to `free()`, as the subject requires.
   `nmemb * size` is checked for overflow before calling `malloc`.
 - **NULL arguments:** the libc copies (`ft_strlen`, `ft_strdup`, ...) behave like
-  the originals and do not check for `NULL`. The additional and list functions
+  the originals and do not check for `NULL`. The one exception is `ft_memcpy`,
+  which returns `dest` without copying when both `dest` and `src` are `NULL`,
+  so a common tester case does not crash; any other `NULL` pointer with `n > 0`
+  still crashes, as the original does. The additional and list functions
   return `NULL` or do nothing when given a `NULL` string, list or callback.
 - **`ft_lstmap`** keeps a pointer to the last `next` field, so building the new
   list is linear instead of walking it again for every node.

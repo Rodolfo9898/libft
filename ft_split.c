@@ -6,7 +6,7 @@
 /*   By: rperez-t <rperez-t@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:48:25 by rperez-t          #+#    #+#             */
-/*   Updated: 2026/10/29 23:49:51 by rperez-t         ###   ########.fr       */
+/*   Updated: 2026/10/30 11:49:28 by rperez-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ static size_t	count_words(char const *s, char c)
 	return (count);
 }
 
-static void	free_all(char **result, size_t word)
+static void	free_words(char **result, size_t word)
 {
 	while (word--)
 		free(result[word]);
-	free(result);
 }
 
 static int	split_words(char **result, char const *s, char c, size_t word)
@@ -56,7 +55,7 @@ static int	split_words(char **result, char const *s, char c, size_t word)
 			result[word] = malloc(sizeof(char) * (i - word_start + 2));
 			if (!result[word])
 			{
-				free_all(result, word);
+				free_words(result, word);
 				return (0);
 			}
 			ft_memcpy(result[word], s + word_start, i - word_start + 1);
@@ -79,6 +78,9 @@ char	**ft_split(char const *s, char c)
 	if (!result)
 		return (NULL);
 	if (!split_words(result, s, c, 0))
+	{
+		free(result);
 		return (NULL);
+	}
 	return (result);
 }

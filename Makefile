@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+include mk/colors.mk
+
 NAME		= libft.a
 
 SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
@@ -31,16 +33,16 @@ CFLAGS		= -Wall -Wextra -Werror
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
+	@$(call run,ar rcs ${NAME} ${OBJS})
 
 %.o: %.c libft.h
-	${CC} ${CFLAGS} -I. -c $< -o $@
+	@$(call run,${CC} ${CFLAGS} -I. -c $< -o $@)
 
 clean:
-	rm -f ${OBJS}
+	@$(call remove,${OBJS},Removing the objects of libft,objects of libft)
 
 fclean: clean
-	rm -f ${NAME}
+	@$(call remove,${NAME},Removing the library ${NAME})
 
 re: fclean all
 

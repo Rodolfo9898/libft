@@ -89,6 +89,10 @@ make fclean # removes the object files and libft.a
 make re     # fclean, then make
 ```
 
+The output is coloured (`mk/colors.mk`): commands in green, errors in red, warnings in
+yellow. `clean` and `fclean` say in blue what they remove, or warn in yellow when there
+is nothing to remove.
+
 Every file is compiled with `-Wall -Wextra -Werror`.
 
 To use the library in a program:

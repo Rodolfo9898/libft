@@ -19,11 +19,12 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(call run,$(AR) $(NAME) $(OBJS))
 
-%.o: %.c libft.h
+$(OBJ_DIR)/%.o: %.c libft.h
+	@mkdir -p $(@D)
 	@$(call run,$(CC) $(CFLAGS) -I. -c $< -o $@)
 
 clean:
-	@$(call remove,$(OBJS),Removing the objects of libft,objects of libft)
+	@$(call remove,$(OBJ_DIR),Removing the objects of libft,objects of libft)
 
 fclean: clean
 	@$(call remove,$(NAME),Removing the library $(NAME))

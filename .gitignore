@@ -1,3 +1,5 @@
 *.o
 libft.a
 verdict.md
+# object folder
+objects/

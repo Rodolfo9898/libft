@@ -15,3 +15,5 @@ NAME		= libft.a
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 AR			= ar rcs
+
+OBJ_DIR		= objects

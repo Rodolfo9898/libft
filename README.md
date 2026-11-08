@@ -12,8 +12,14 @@ the standard functions. Its goal is to understand how these functions work
 
 ### Library contents
 
-All prototypes are declared in `libft.h`. Only `malloc`, `free` and `write`
+All prototypes are declared in `include/libft.h`, grouped by folder; it
+includes `include/core/libs.h` (system headers, `limits.h` included) and
+`include/core/structs.h` (`t_list`). Only `malloc`, `free` and `write`
 are used from outside the library.
+
+Each function has its own file, `ft_<name>.c`, under `sources/`, in one folder
+per theme: `char/`, `memory/`, `string/`, `convert/`, `new_string/`,
+`output/` and `list/`.
 
 **Libc functions** (same prototype and behaviour as the original, prefixed
 with `ft_`):
@@ -114,7 +120,7 @@ int	main(void)
 ```
 
 ```sh
-cc -Wall -Wextra -Werror main.c -I. -L. -lft
+cc -Wall -Wextra -Werror main.c -I include -L. -lft
 ```
 
 ## Resources

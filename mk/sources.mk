@@ -13,7 +13,7 @@
 # One function per file, grouped by theme under sources/; headers under include/.
 SRC_DIR		= sources
 INC_DIR		= include
-HEADERS		= $(INC_DIR)/libft.h $(addprefix $(INC_DIR)/core/,libs.h structs.h)
+HEADERS		= $(INC_DIR)/libft.h $(addprefix $(INC_DIR)/core/libft_,libs.h structs.h)
 
 CHAR_SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 				  ft_toupper.c ft_tolower.c

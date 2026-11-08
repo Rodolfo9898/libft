@@ -13,8 +13,8 @@ the standard functions. Its goal is to understand how these functions work
 ### Library contents
 
 All prototypes are declared in `include/libft.h`, grouped by folder; it
-includes `include/core/libs.h` (system headers, `limits.h` included) and
-`include/core/structs.h` (`t_list`). Only `malloc`, `free` and `write`
+includes `include/core/libft_libs.h` (system headers, `limits.h` included) and
+`include/core/libft_structs.h` (`t_list`). Only `malloc`, `free` and `write`
 are used from outside the library.
 
 Each function has its own file, `ft_<name>.c`, under `sources/`, in one folder

@@ -13,7 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "core/structs.h"
+# include "core/libft_structs.h"
 
 /* From sources/char/ */
 int				ft_isalpha(int c);
